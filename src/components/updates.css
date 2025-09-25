@@ -1,0 +1,16 @@
+.updates {
+  padding: 40px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.updates ul {
+  list-style: none;
+  padding: 0;
+}
+
+.updates li {
+  margin: 10px 0;
+  font-size: 1.1em;
+  animation: fadeIn 1s ease-in;
+}
