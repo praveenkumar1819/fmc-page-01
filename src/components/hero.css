@@ -1,24 +1,90 @@
+/* Fullscreen Hero */
 .hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px;
   text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  color: white;
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #0f2027, #203a43);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #ffffff;
+  overflow: hidden;
+  position: relative;
 }
 
-.fade-in {
-  animation: fadeIn 2s ease-in;
+/* Animated Gradient Background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.slide-up {
-  animation: slideUp 2s ease-out;
+/* Floating Gradient Overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+  animation: floatOverlay 20s linear infinite;
+  z-index: 0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes floatOverlay {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(50%, 50%) rotate(360deg); }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+/* Title Styling */
+.title {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  animation: titleFadeIn 5s ease-in-out forwards;
+  opacity: 0;
+  z-index: 1;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes titleFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Slogan Container */
+.slogan {
+  display: flex;
+  gap: 12px;
+  font-size: 1.8rem;
+  margin-top: 20px;
+  z-index: 1;
+}
+
+/* Word animation */
+.word {
+  opacity: 0;
+  animation: wordFadeInOut 10s ease-in-out infinite;
+}
+
+.delay1 {
+  animation-delay: 0s;
+}
+
+.delay2 {
+  animation-delay: 3.3s;
+}
+
+.delay3 {
+  animation-delay: 6.6s;
+}
+
+@keyframes wordFadeInOut {
+  0%, 20% { opacity: 0; transform: translateY(10px); }
+  10%, 15% { opacity: 1; transform: translateY(0); }
+  30%, 100% { opacity: 0; transform: translateY(-10px); }
 }
